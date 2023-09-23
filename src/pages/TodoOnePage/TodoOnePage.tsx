@@ -18,47 +18,89 @@ interface ITodoOnePageProps {
 
 const fields: TypedField[] = [
   {
-    type: FieldType.Line,
-    title: "System info",
-  },
-  {
     type: FieldType.Div,
     style: {
+      padding: "10px",
       display: "grid",
-      gridTemplateColumns: "1fr auto",
+      gridTemplateColumns: "150px auto",
+      gap: "5px",
     },
     fields: [
+      // /images
+
       {
-        type: FieldType.Text,
-        name: "userId",
-        title: "User id",
-        outlined: false,
-        disabled: true,
+        type: FieldType.Group,
+        fields: [
+          {
+            type: FieldType.Box,
+            style: {
+              // width: '150px',
+              height: "150px",
+              backgroundColor: "black",
+              borderRadius: "10px",
+            },
+          },
+          {
+            type: FieldType.Rating,
+          },
+        ],
       },
       {
-        type: FieldType.Checkbox,
-        fieldBottomMargin: "0",
-        name: "completed",
-        title: "Completed",
-        disabled: true,
+        type: FieldType.Group,
+        fields: [
+          {
+            type: FieldType.Line,
+            title: "Profile",
+          },
+          {
+            type: FieldType.Items,
+            title: "Male",
+            itemList: ["Male", "Female"],
+          },
+          {
+            type: FieldType.Items,
+            title: "List",
+          },
+        ],
       },
     ],
   },
-  {
-    type: FieldType.Line,
-    title: "Common info",
-  },
-  {
-    type: FieldType.Text,
-    name: "title",
-    title: "Title",
-  },
+  // {
+  //   type: FieldType.Div,
+  //   style: {
+  //     display: "grid",
+  //     gridTemplateColumns: "1fr auto",
+  //   },
+  //   fields: [
+  //     {
+  //       type: FieldType.Text,
+  //       name: "userId",
+  //       title: "User id",
+  //       outlined: false,
+  //       disabled: true,
+  //     },
+  //     {
+  //       type: FieldType.Checkbox,
+  //       fieldBottomMargin: "0",
+  //       name: "completed",
+  //       title: "Completed",
+  //       disabled: true,
+  //     },
+  //   ],
+  // },
+  // {
+  //   type: FieldType.Line,
+  //   title: "Common info",
+  // },
+  // {
+  //   type: FieldType.Text,
+  //   name: "title",
+  //   title: "Title",
+  // },
 ];
 
 export const TodoOnePage = ({ id }: ITodoOnePageProps) => {
-  const fetchState = () => [
-    fetchApi<ITodoItem>(`/api/v1/todos/${id}`)
-  ] as const;
+  const fetchState = () => [fetchApi<ITodoItem>(`/users/${id}`)] as const;
 
   const Content = (props: any) => {
     const { data, oneProps, beginSave } = usePreventLeave({

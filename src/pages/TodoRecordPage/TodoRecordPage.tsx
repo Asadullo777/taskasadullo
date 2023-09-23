@@ -51,7 +51,7 @@ export const TodoRecordPage = ({ id }: ITodoRecordPageProps) => {
   return (
     <>
       <FetchView
-        state={async () => await fetchApi<ITodoItem>(`/api/v1/todos/${id}`)}
+        state={async () => await fetchApi<ITodoItem>(`/users/${id}`)}
         onLoadStart={() => setLoader(true)}
         onLoadEnd={() => setLoader(false)}
       >

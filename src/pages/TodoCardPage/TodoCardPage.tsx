@@ -49,7 +49,7 @@ export const TodoCardPage = () => {
 
   return (
     <FetchView
-      state={async () => await fetchApi<ITodoItem[]>("/api/v1/todos")}
+      state={async () => await fetchApi<ITodoItem[]>("/users")}
       onLoadStart={() => setLoader(true)}
       onLoadEnd={() => setLoader(false)}
     >
