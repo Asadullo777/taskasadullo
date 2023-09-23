@@ -7,6 +7,7 @@ import {
   usePreventLeave,
   sleep,
 } from "react-declarative";
+import jsonp from "jsonp";
 
 import fetchApi from "../../helpers/fetchApi";
 import history from "../../helpers/history";
@@ -245,58 +246,63 @@ const fields: TypedField[] = [
       },
     ],
   },
-
-  // {
-  //   type: FieldType.Div,
-  //   style: {
-  //     display: "grid",
-  //     gridTemplateColumns: "1fr auto",
-  //   },
-  //   fields: [
-  //     {
-  //       type: FieldType.Text,
-  //       name: "userId",
-  //       title: "User id",
-  //       outlined: false,
-  //       disabled: true,
-  //     },
-  //     {
-  //       type: FieldType.Checkbox,
-  //       fieldBottomMargin: "0",
-  //       name: "completed",
-  //       title: "Completed",
-  //       disabled: true,
-  //     },
-  //   ],
-  // },
-  // {
-  //   type: FieldType.Line,
-  //   title: "Common info",
-  // },
-  // {
-  //   type: FieldType.Text,
-  //   name: "title",
-  //   title: "Title",
-  // },
 ];
 
 export const TodoOnePage = ({ id }: ITodoOnePageProps) => {
   const fetchState = () => [fetchApi<ITodoItem>(`/users/${id}`)] as const;
 
+  // const Content = (props: any) => {
+  //   const { data, oneProps, beginSave } = usePreventLeave({
+  //     history,
+  //     onSave: () => {
+  //       alert(JSON.stringify(data, null, 2));
+  //       return true;
+  //     },
+  //   });
+
   const Content = (props: any) => {
     const { data, oneProps, beginSave } = usePreventLeave({
       history,
       onSave: () => {
-        alert(JSON.stringify(data, null, 2));
+        // Ваши действия перед сохранением данных
+
+        // Создаем объект данных, который вы хотите отправить на сервер
+        const requestData = {
+          // Пример данных, которые могут быть отправлены
+          name: data.name,
+          email: data.email,
+          // Другие поля данных
+        };
+
+        // URL-адрес сервера для JSONP-запроса
+        const serverUrl = "http://localhost:8080/db";
+
+        // Выполняем JSONP-запрос
+        jsonp(
+          serverUrl,
+          { param: "callback", timeout: 5000 },
+          (err: any, response: any) => {
+            if (err) {
+              console.error("Error in the request", err);
+              alert("Error in the save on the server.");
+            } else {
+              console.log("Saved", response);
+
+              // Ваши действия после успешного сохранения
+              alert("Saved on the base.");
+            }
+          }
+        );
+
+        // Возвращаем true, чтобы разрешить покидание страницы
         return true;
       },
     });
-
     return (
       <>
         <Breadcrumbs
           withSave
-          title="Todo list"
+          title="Users"
           subtitle={props.todo.title}
           onSave={beginSave}
           onBack={() => history.push("/todos_list")}

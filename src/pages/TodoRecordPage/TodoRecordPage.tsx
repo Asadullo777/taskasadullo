@@ -30,10 +30,10 @@ const updateFields: IField[] = [
 ];
 
 const cardActions: IActionTrigger[] = [
-    {
-        action: 'update-card',
-        label: 'Update todo',
-    },
+  {
+    action: "update-card",
+    label: "Update todo",
+  },
 ];
 
 export const TodoRecordPage = ({ id }: ITodoRecordPageProps) => {
@@ -63,9 +63,9 @@ export const TodoRecordPage = ({ id }: ITodoRecordPageProps) => {
               onBack={() => history.push("/todos_card")}
             />
             <ActionTrigger
-                sx={{ mb: 1 }}
-                actions={cardActions}
-                onAction={pickData}
+              sx={{ mb: 1 }}
+              actions={cardActions}
+              onAction={pickData}
             />
             <RecordView data={todo} />
           </>

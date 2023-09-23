@@ -34,7 +34,7 @@ const filters: TypedField[] = [
 const columns: IColumn[] = [
   {
     type: ColumnType.Text,
-    field: "id",
+    field: "firstName",
     headerName: "ID",
     secondary: true,
     width: () => 50,
@@ -96,13 +96,10 @@ const heightRequest = () => window.innerHeight - 75;
 export const TodoListPage = () => {
   const { setLoader } = useLoader();
 
-  const handler = useArrayPaginator(
-    async () => await fetchApi("/users"),
-    {
-      onLoadStart: () => setLoader(true),
-      onLoadEnd: () => setLoader(false),
-    }
-  );
+  const handler = useArrayPaginator(async () => await fetchApi("/users"), {
+    onLoadStart: () => setLoader(true),
+    onLoadEnd: () => setLoader(false),
+  });
 
   const handleRowActionsClick = (action: string, row: any) => {
     alert(JSON.stringify({ row, action }, null, 2));
