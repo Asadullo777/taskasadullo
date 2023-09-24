@@ -16,7 +16,7 @@ export const UserInfo = () => (
     </Grid>
     <Grid item xs>
       <Stack justifyContent="center" height="100%">
-        <Typography>Anonymous</Typography>
+        <Typography>Asadullo</Typography>
       </Stack>
     </Grid>
     <Grid item>

@@ -16,15 +16,15 @@ export const sidemenu: IScaffold2Group[] = [
         icon: HomeIcon,
       },
       {
-        label: "Todo list (decl)",
+        label: "Users",
         id: "todos_list",
         icon: PlaylistAddCheckIcon,
       },
-      {
-        label: "Todo list (rad)",
-        id: "todos_card",
-        icon: PlaylistAddCheckIcon,
-      },
+      // {
+      //   label: "Todo list (rad)",
+      //   id: "todos_card",
+      //   icon: PlaylistAddCheckIcon,
+      // },
     ],
   },
 ];

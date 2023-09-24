@@ -115,8 +115,8 @@ export const TodoListPage = () => {
 
   return (
     <List
-      title="Todo list"
-      filterLabel="Filters"
+      title="Users"
+      filterLabel="Filters all users"
       heightRequest={heightRequest}
       rowActions={rowActions}
       actions={actions}

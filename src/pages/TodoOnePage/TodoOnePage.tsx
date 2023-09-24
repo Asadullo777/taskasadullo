@@ -102,6 +102,7 @@ const fields: TypedField[] = [
                 title: "keywords",
                 defaultValue: "keyword",
                 name: "keyword",
+                outlined: false,
               },
               {
                 type: FieldType.Checkbox,
